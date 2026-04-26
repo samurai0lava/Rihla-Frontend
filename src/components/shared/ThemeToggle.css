@@ -1,0 +1,65 @@
+.theme-toggle {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.toggle-track {
+  width: 48px;
+  height: 27px;
+  border-radius: 13px;
+  position: relative;
+  transition: background-color 0.3s ease;
+}
+
+.toggle-track.light {
+  background-color: #E5E5E5;
+}
+
+.toggle-track.dark {
+  background-color: #3A3A3C;
+}
+
+.toggle-thumb {
+  position: absolute;
+  top: 3px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.toggle-thumb.light {
+  transform: translateX(3px);
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.toggle-thumb.dark {
+  transform: translateX(25px);
+  background-color: #1C1C1E;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.toggle-icon {
+  color: #FF8C42;
+}
+
+.theme-toggle:hover .toggle-track {
+  opacity: 0.9;
+}
+
+.theme-toggle:focus {
+  outline: none;
+}
+
+.theme-toggle:focus-visible .toggle-track {
+  box-shadow: 0 0 0 2px #FF8C42;
+}

@@ -1,0 +1,44 @@
+/* Footer Section */
+.footer-section {
+  background-color: #2D2D2D;
+  padding: 4rem 4rem 2rem;
+  color: #ffffff;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  max-width: 1700px;
+  margin: 0 auto;
+  gap: 4rem;
+  flex-wrap: wrap;
+}
+
+
+.big-atlass-image {
+  width: 100%;
+  height: auto;
+  padding-top: 200px;
+}
+
+@media (max-width: 768px) {
+  .footer-section {
+    padding: 3rem 1.5rem 1.5rem;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .big-atlass-image {
+    padding-top: 60px;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-section {
+    padding: 2.5rem 1rem 1rem;
+  }
+}

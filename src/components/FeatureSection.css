@@ -1,0 +1,155 @@
+/* Features Section - Diagonal Zigzag Timeline */
+.features-section {
+  min-height: 100vh;
+  background-color: #F5F5F7;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 4rem 2rem;
+  transition: background-color 0.3s ease;
+  /* Decorative img uses left: -27%; clip so it cannot widen the page */
+  overflow-x: clip;
+}
+
+:is(.dark) .features-section {
+  background-color: #1C1C1E;
+}
+
+.features-container {
+  max-width: 900px;
+  width: 100%;
+  position: relative;
+  padding: 2rem 0;
+}
+
+.features-container>img {
+  position: absolute;
+  left: -27%;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.5rem 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* Right-aligned items (first 3 features) */
+.feature-item.feature-right {
+  justify-content: flex-end;
+  padding-right: 0;
+}
+
+.feature-item.feature-right:nth-child(2) {
+  padding-right: 2%;
+}
+
+.feature-item.feature-right:nth-child(3) {
+  padding-right: 10%;
+}
+
+.feature-item.feature-right:nth-child(4) {
+  padding-right: 20%;
+}
+
+.feature-item.feature-left {
+  justify-content: flex-start;
+}
+
+.feature-item.feature-left:nth-child(5) {
+  padding-left: 30%;
+}
+
+.feature-item.feature-left:nth-child(6) {
+  padding-left: 20%;
+}
+
+.feature-item.feature-left:nth-child(7) {
+  padding-left: 10%;
+}
+
+.feature-icon {
+  flex-shrink: 0;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+}
+
+.feature-icon img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+}
+
+.feature-content {
+  max-width: 320px;
+}
+
+.feature-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #000000;
+  margin-bottom: 0.35rem;
+  transition: color 0.3s ease;
+}
+
+:is(.dark) .feature-title {
+  color: #ffffff;
+}
+
+.feature-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: #000000;
+  line-height: 1.5;
+  transition: color 0.3s ease;
+}
+
+:is(.dark) .feature-text {
+  color: #cccccc;
+}
+
+@media (max-width: 768px) {
+  .features-section {
+    padding: 3rem 1.5rem;
+    min-height: auto;
+  }
+
+  .features-container > img {
+    display: none;
+  }
+
+  .feature-item.feature-right,
+  .feature-item.feature-left {
+    justify-content: flex-start;
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+  }
+
+  .feature-content {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .features-section {
+    padding: 2.5rem 1rem;
+  }
+
+  .feature-title {
+    font-size: 1rem;
+  }
+}

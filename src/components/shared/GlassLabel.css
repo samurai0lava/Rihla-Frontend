@@ -1,0 +1,13 @@
+.glass-label{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+    padding: 1rem 1.7rem;
+    background: rgba(255, 255, 255, 0);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border-radius: 50px;
+    box-shadow: 0 8px 32px rgba(255, 255, 255, 0.074);
+    transition: all 0.3s ease;
+}

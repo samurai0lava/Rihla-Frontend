@@ -1,0 +1,67 @@
+.oauth-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.oauth-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    background-color: #ffffff;
+    border: 1px solid #E5E5E5;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: 'Arial', sans-serif;
+    font-size: 0.875rem;
+    color: #333333;
+}
+
+:is(.dark) .oauth-button {
+    background-color: #2C2C2E;
+    border-color: #3A3A3C;
+    color: #ffffff;
+}
+
+.oauth-button:hover {
+    background-color: #F5F5F7;
+    border-color: #CCCCCC;
+}
+
+:is(.dark) .oauth-button:hover {
+    background-color: #3A3A3C;
+    border-color: #4A4A4C;
+}
+
+.oauth-button-content {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.oauth-button-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.oauth-button-text {
+    font-weight: 500;
+}
+
+.google-button .oauth-button-icon svg {
+    width: 18px;
+    height: 18px;
+}
+
+/* Same surface as Google button: black logo on light, white logo in .dark */
+.fortytwo-button .oauth-button-icon .fortytwo-logo {
+    width: 20px;
+    height: auto;
+    max-height: 14px;
+    object-fit: contain;
+    display: block;
+}

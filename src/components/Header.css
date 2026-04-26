@@ -1,0 +1,313 @@
+.Header {
+  background-color: transparent;
+  box-shadow: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  padding-top: 1rem;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, backdrop-filter 0.3s ease;
+  will-change: background-color, box-shadow, backdrop-filter;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform: translate3d(0, 0, 0);
+}
+
+:is(.dark) .Header {
+  background-color: transparent;
+}
+
+/* Document pages (e.g. /privacy): solid bar at top, same as pre–hero-landing default */
+.Header.bar-document {
+  background-color: #f5f5f7;
+  box-shadow: none;
+}
+
+:is(.dark) .Header.bar-document {
+  background-color: #1c1c1e;
+}
+
+/* Over the hero image on `/` only: readable chrome until the bar frosts on scroll */
+.Header:not(.scrolled):not(.bar-document) .desktop-nav .nav-link {
+  color: rgba(255, 255, 255, 0.92);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
+}
+
+.Header:not(.scrolled):not(.bar-document) .desktop-nav .nav-link:hover,
+.Header:not(.scrolled):not(.bar-document) .desktop-nav .nav-link.active {
+  color: #ff6600;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.55);
+}
+
+.Header:not(.scrolled):not(.bar-document) .logo-img {
+  filter: drop-shadow(0 1px 3px rgba(255, 255, 255, 0.094));
+}
+
+.Header.scrolled .logo-img {
+  filter: none;
+}
+
+.Header.scrolled {
+  background-color: rgba(245, 245, 247, 0.9);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+:is(.dark) .Header.scrolled {
+  background-color: rgba(28, 28, 30, 0.9);
+}
+
+.nav {
+  max-width: 1800px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 2rem;
+  padding-left: max(2rem, env(safe-area-inset-left, 0px));
+  padding-right: max(2rem, env(safe-area-inset-right, 0px));
+  box-sizing: border-box;
+  min-width: 0;
+  overflow-x: clip;
+}
+
+.nav-container {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  column-gap: 1rem;
+  min-height: 4rem;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.nav-container > .logo {
+  justify-self: start;
+}
+
+.nav-container > .desktop-nav {
+  justify-self: center;
+}
+
+.nav-container > .nav-right {
+  justify-self: end;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-shrink: 0;
+}
+
+.nav-right .theme-toggle {
+  flex-shrink: 0;
+}
+
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  box-sizing: border-box;
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  border-radius: 8px;
+  transition: background 0.2s ease;
+}
+
+.nav-hamburger:hover {
+  background: rgba(0, 0, 0, 0.06);
+}
+
+.Header:not(.scrolled):not(.bar-document) .nav-hamburger:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.nav-hamburger:focus {
+  outline: none;
+}
+
+.nav-hamburger:focus-visible {
+  outline: 2px solid #ff8c42;
+  outline-offset: 2px;
+}
+
+:is(.dark) .nav-hamburger:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.nav-hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background-color: #000000;
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease, background-color 0.3s ease,
+    box-shadow 0.3s ease;
+  transform-origin: center;
+}
+
+.Header:not(.scrolled):not(.bar-document) .nav-hamburger span {
+  background-color: #ffffff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+}
+
+:is(.dark) .nav-hamburger span {
+  background-color: #ffffff;
+}
+
+.Header.scrolled .nav-hamburger span {
+  box-shadow: none;
+}
+
+:is(.dark) .Header.scrolled .nav-hamburger span {
+  background-color: #ffffff;
+}
+
+:is(:not(.dark)) .Header.scrolled .nav-hamburger span {
+  background-color: #000000;
+}
+
+/* 5px gap ×2 between bars — middle bar meets X intersection */
+.nav-hamburger.open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.nav-hamburger.open span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.nav-hamburger.open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+.mobile-menu {
+  display: none;
+  flex-direction: column;
+  gap: 0;
+  padding: 0.5rem 1.5rem calc(1rem + env(safe-area-inset-bottom, 0px));
+  padding-left: max(1.5rem, env(safe-area-inset-left, 0px));
+  padding-right: max(1.5rem, env(safe-area-inset-right, 0px));
+  max-height: min(70vh, calc(100dvh - 4.5rem - env(safe-area-inset-top, 0px)));
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  background-color: #F5F5F7;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  transition: background-color 0.3s ease;
+}
+
+:is(.dark) .mobile-menu {
+  background-color: #1C1C1E;
+  border-top-color: rgba(255, 255, 255, 0.08);
+}
+
+.mobile-menu.open {
+  display: flex;
+}
+
+.mobile-nav-link {
+  color: #000000;
+  text-decoration: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  transition: color 0.2s ease;
+}
+
+:is(.dark) .mobile-nav-link {
+  color: #ffffff;
+  border-bottom-color: rgba(255, 255, 255, 0.06);
+}
+
+.mobile-nav-link:hover,
+.mobile-nav-link.active {
+  color: #FF6600;
+}
+
+.mobile-menu-actions {
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding-top: 1rem;
+}
+
+.mobile-menu-actions .login-btn-root {
+  width: 100%;
+}
+
+.mobile-menu-actions .login-btn {
+  display: inline-flex;
+  width: 100%;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 3.5rem;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  /*
+   * LogoRihla.css sets .logo { flex-shrink: 0 }, which blocks shrinking and
+   * pushes the theme toggle + hamburger off-screen on narrow viewports.
+   */
+  .Header .nav-container .logo {
+    flex: 1 1 auto;
+    flex-shrink: 1;
+    min-width: 0;
+    /* theme track48px + gap + 44px burger + safe margin */
+    max-width: calc(100% - 7.5rem);
+    overflow: hidden;
+  }
+
+  .nav-hamburger {
+    display: flex;
+    flex-shrink: 0;
+  }
+
+  .nav {
+    padding-left: max(0.75rem, env(safe-area-inset-left, 0px));
+    padding-right: max(0.75rem, env(safe-area-inset-right, 0px));
+  }
+
+  .nav-right {
+    flex: 0 0 auto;
+    gap: 0.35rem;
+    flex-shrink: 0;
+  }
+
+  /* Hide desktop login button in nav-right on mobile (shown in mobile menu) */
+  .nav-right .login-btn-root {
+    display: none;
+  }
+
+  .logo h1 {
+    font-size: 1.35rem;
+  }
+}

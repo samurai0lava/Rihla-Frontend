@@ -1,0 +1,218 @@
+.vertical-nav {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 72px;
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem 1rem;
+    z-index: 100;
+    background: rgb(0, 0, 0);
+    transition: width 0.3s ease;
+    overflow: hidden;
+}
+
+.vertical-nav.expanded {
+    width: 240px;
+}
+
+.nav-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 2rem;
+    min-height: 32px;
+}
+
+.vertical-nav.expanded .nav-header {
+    justify-content: space-between;
+}
+
+.nav-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #FF8C00;
+    white-space: nowrap;
+}
+
+.nav-brand-logo {
+    display: block;
+    height: 26px;
+    width: auto;
+    object-fit: contain;
+}
+
+.nav-brand-btn {
+    appearance: none;
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.nav-toggle {
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+}
+
+.nav-toggle:hover {
+    transform: scale(1.1);
+}
+
+.nav-items {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    flex: 1;
+    width: 100%;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 48px;
+    border-radius: 12px;
+    color: #ffffff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: transparent;
+    border: none;
+    gap: 1rem;
+    padding: 0;
+}
+
+.vertical-nav.expanded .nav-item {
+    justify-content: flex-start;
+    padding: 0 0.75rem;
+}
+
+.nav-label {
+    font-size: 1rem;
+    font-weight: 500;
+    white-space: nowrap;
+    opacity: 1;
+    transition: opacity 0.2s ease;
+}
+
+.nav-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.nav-item.active {
+    color: #FF8C00;
+    background: transparent;
+}
+
+.nav-item.active:hover {
+    background: rgba(255, 140, 0, 0.1);
+}
+
+.nav-bottom {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+}
+
+.nav-item.profile {
+    color: #B388FF;
+}
+
+.nav-item.profile.active {
+    color: #B388FF;
+}
+
+.nav-item.logout {
+    color: #ffffff;
+}
+
+.nav-item.logout:hover {
+    color: #FF8C00;
+    background: rgba(255, 140, 0, 0.1);
+}
+
+
+/* Add bottom padding to pages that use VerticalNav so content isn't hidden */
+@media (max-width: 768px) {
+    .vertical-nav ~ * {
+        padding-bottom: 80px;
+    }
+}
+
+@media (max-width: 768px) {
+    .vertical-nav {
+        top: auto;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: auto;
+        width: 100%;
+        flex-direction: row;
+        padding: 0.5rem 0.5rem;
+        padding-bottom: max(0.5rem, env(safe-area-inset-bottom));
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        overflow: visible;
+    }
+
+    .vertical-nav.expanded {
+        width: 100%;
+    }
+
+    .nav-header {
+        display: none;
+    }
+
+    .nav-items {
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        gap: 0;
+        flex: 1;
+    }
+
+    .nav-item {
+        flex-direction: column;
+        height: auto;
+        padding: 0.4rem 0.5rem !important;
+        gap: 0.25rem;
+        border-radius: 8px;
+        min-width: 44px;
+        justify-content: center;
+    }
+
+    .vertical-nav.expanded .nav-item {
+        justify-content: center;
+        padding: 0.4rem 0.5rem !important;
+    }
+
+    .nav-label {
+        font-size: 0.65rem;
+        font-weight: 500;
+    }
+
+    .nav-bottom {
+        flex-direction: row;
+        gap: 0;
+        margin-top: 0;
+        align-items: center;
+    }
+
+    .nav-toggle {
+        display: none;
+    }
+}

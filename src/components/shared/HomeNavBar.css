@@ -1,0 +1,160 @@
+.home-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    padding-top: calc(env(safe-area-inset-top, 0px) + 1rem);
+    z-index: 100;
+    background: transparent;
+    isolation: isolate;
+}
+
+/* Liquid glass header surface
+.home-nav::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background: rgba(255, 255, 255, 0.62);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.10),
+        0 1px 0 rgba(255, 255, 255, 0.65) inset;
+    backdrop-filter: blur(14px) saturate(160%);
+    -webkit-backdrop-filter: blur(14px) saturate(160%);
+}
+
+.home-nav::after {
+    content: "";
+    position: absolute;
+    inset: -40% -60%;
+    z-index: -1;
+    pointer-events: none;
+    background:
+        radial-gradient(closest-side, rgba(255, 140, 0, 0.22), rgba(255, 140, 0, 0) 70%),
+        radial-gradient(closest-side, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0) 75%);
+    filter: blur(18px);
+    opacity: 0.55;
+    animation: homeNavSheen 10s ease-in-out infinite;
+} */
+
+@keyframes homeNavSheen {
+    0% { transform: translate3d(-4%, -2%, 0) rotate(-6deg); }
+    50% { transform: translate3d(6%, 3%, 0) rotate(6deg); }
+    100% { transform: translate3d(-4%, -2%, 0) rotate(-6deg); }
+}
+
+::is(.dark) .home-nav::before {
+    background: rgba(28, 28, 30, 0.62);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.35),
+        0 1px 0 rgba(255, 255, 255, 0.08) inset;
+}
+
+::is(.dark) .home-nav::after {
+    opacity: 0.65;
+}
+
+/* Home video: lighter glass so the video reads through */
+.home-nav.home-nav--home-video::before {
+    /* background: rgba(10, 10, 12, 0.28); */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.30),
+        0 1px 0 rgba(255, 255, 255, 0.08) inset;
+}
+
+/* Solid strip matches app surface (desktop was transparent and could read as a light bar over chat). */
+.home-nav:not(.home-nav--home-video) {
+    background: transparent;
+}
+
+:is(.dark) .home-nav:not(.home-nav--home-video) {
+    border-bottom: none;
+}
+
+.home-nav.home-nav--home-video {
+    background: transparent;
+    border-bottom: none;
+}
+
+.profile-dropdown-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+/* /home only: white wordmark on video in both themes (messages/notifications keep route-specific colors) */
+.home-nav--home-video .home-nav-brand--on-video {
+    color: #ffffff;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.55);
+}
+
+.home-nav-brand-link {
+    appearance: none;
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .home-nav {
+        padding: 0.75rem 1rem;
+        padding-top: calc(env(safe-area-inset-top, 0px) + 0.75rem);
+    }
+}
+
+/*
+ * Fixed bar does not take flow height — apply to the first in-flow main under <HomeNavBar />
+ * so content (e.g. webchat) does not draw under the header.
+ * Mirrors safe-area + vertical padding + row (40px avatar / wordmark).
+ */
+.home-nav-main-offset {
+    padding-top: calc(env(safe-area-inset-top, 0px) + 0.75rem + max(2.5rem, 40px) + 0.75rem);
+    box-sizing: border-box;
+    /* Theme surface under fixed header + mobile bottom padding (avoids wrong compositor color). */
+    background-color: var(--background);
+}
+
+@media (min-width: 769px) {
+    .home-nav-main-offset {
+        padding-top: calc(env(safe-area-inset-top, 0px) + 1rem + max(2.5rem, 40px) + 1rem);
+    }
+}
+
+/*
+ * Add bottom clearance to every page that uses HomeNavBar so content
+ * is never hidden behind the bottom GlassNavBar pill on mobile.
+ */
+@media (max-width: 768px) {
+    .home-nav ~ * {
+        /* Clears compact bottom GlassNavBar + thumb margin */
+        padding-bottom: calc(3.75rem + env(safe-area-inset-bottom, 0px));
+    }
+
+    /* Active chat thread: no bottom pill — drop extra padding */
+    .home-nav--hide-mobile-glass ~ * {
+        padding-bottom: 0;
+    }
+
+    .home-nav--hide-mobile-glass .glass-nav-bar {
+        display: none;
+    }
+
+    /* Active chat thread: hide fixed RIHLA/profile bar; conversation header sits flush with viewport top */
+    .home-nav--hide-mobile-glass {
+        display: none;
+    }
+
+    .home-nav--hide-mobile-glass ~ .home-nav-main-offset {
+        padding-top: 0;
+    }
+}

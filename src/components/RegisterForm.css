@@ -1,0 +1,140 @@
+.register-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+}
+
+.name-row {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.name-row .input-wrapper {
+    flex: 1;
+}
+
+.register-form .input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.register-form .input-icon {
+    position: absolute;
+    left: 1rem;
+    color: #888888;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.register-form input {
+    padding: 0.875rem 1rem;
+    width: 100%;
+    border: 1px solid #E5E5E5;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-family: 'Inter', sans-serif;
+    background-color: #ffffff;
+    transition: all 0.3s ease;
+}
+
+:is(.dark) .register-form input {
+    background-color: #2C2C2E;
+    border-color: #3A3A3C;
+    color: #ffffff;
+}
+
+.register-form .input-wrapper:has(.input-icon) input {
+    padding-left: 3rem;
+}
+
+.register-form input::placeholder {
+    color: #999999;
+}
+
+:is(.dark) .register-form input::placeholder {
+    color: #666666;
+}
+
+.register-form input:focus {
+    outline: none;
+    border-color: #FF8C42;
+}
+
+.register-form .input-wrapper:focus-within .input-icon {
+    color: #FF8C42;
+}
+
+.register-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 0.5rem;
+}
+
+.oauth-label {
+    font-size: 0.8rem;
+    color: #333333;
+    transition: color 0.3s ease;
+}
+
+:is(.dark) .oauth-label {
+    color: #cccccc;
+}
+
+.register-form > button[type="submit"] {
+    padding: 0.4rem 2rem;
+    width: 100%;
+    background-color: #FF8C42;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.register-form > button[type="submit"]:hover:not(:disabled) {
+    background-color: #FF7A2E;
+}
+
+.register-form > button[type="submit"]:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+
+.register-page .oauth-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.7rem;
+    margin-top: 0.4rem;
+    margin-bottom: -0.5rem;
+}
+
+.oauth-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.oauth-or {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.875rem;
+    color: #666666;
+    transition: color 0.3s ease;
+}
+
+:is(.dark) .oauth-or {
+    color: #999999;
+}
+
+@media (max-width: 360px) {
+    .name-row {
+        flex-direction: column;
+    }
+}

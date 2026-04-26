@@ -1,0 +1,236 @@
+/* Frosted toasts aligned with GlassNavBar.css (liquid glass) */
+.glass-toast-stack {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+    pointer-events: none;
+    width: min(calc(100vw - 2rem), 22rem);
+}
+
+/* Desktop / tablet: directly under top glass pill (nav row + pill) */
+@media (min-width: 769px) {
+    .glass-toast-stack {
+        top: calc(env(safe-area-inset-top, 0px) + 5rem);
+        bottom: auto;
+    }
+}
+
+/* Mobile: above bottom glass pill */
+@media (max-width: 768px) {
+    .glass-toast-stack {
+        top: auto;
+        bottom: calc(4.35rem + env(safe-area-inset-bottom, 0px));
+    }
+}
+
+.glass-toast-stack > * {
+    pointer-events: auto;
+}
+
+.glass-toast {
+    backdrop-filter: blur(80px) saturate(180%);
+    -webkit-backdrop-filter: blur(80px) saturate(180%);
+    border-radius: 1rem;
+    padding: 0.75rem 1rem;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: left;
+    cursor: default;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    background: linear-gradient(
+        135deg,
+        rgba(0, 0, 0, 0.06) 0%,
+        rgba(0, 0, 0, 0.03) 50%,
+        rgba(0, 0, 0, 0.05) 100%
+    );
+    box-shadow:
+        0 0 0 1px rgba(0, 0, 0, 0.04) inset,
+        0 2px 4px rgba(0, 0, 0, 0.06),
+        0 12px 40px rgba(0, 0, 0, 0.1);
+    animation: glass-toast-enter 0.38s cubic-bezier(0.34, 1.2, 0.64, 1);
+}
+
+.glass-toast--clickable {
+    cursor: pointer;
+}
+
+.glass-toast--clickable:hover {
+    border-color: rgba(0, 0, 0, 0.18);
+    box-shadow:
+        0 0 0 1px rgba(0, 0, 0, 0.06) inset,
+        0 4px 12px rgba(0, 0, 0, 0.12),
+        0 12px 40px rgba(0, 0, 0, 0.12);
+}
+
+.dark .glass-toast {
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: linear-gradient(
+        135deg,
+        rgba(0, 0, 0, 0.5) 0%,
+        rgba(0, 0, 0, 0.35) 50%,
+        rgba(0, 0, 0, 0.42) 100%
+    );
+    box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.06) inset,
+        0 2px 8px rgba(0, 0, 0, 0.35),
+        0 12px 40px rgba(0, 0, 0, 0.25);
+}
+
+.dark .glass-toast--clickable:hover {
+    border-color: rgba(255, 255, 255, 0.22);
+}
+
+/* Busy video backdrops (/home, /planner) — match glass-nav-bar--home-video */
+.glass-toast-stack--on-video .glass-toast {
+    border: 1px solid rgba(255, 255, 255, 0.42);
+    background: linear-gradient(
+        135deg,
+        rgba(0, 0, 0, 0.42) 0%,
+        rgba(0, 0, 0, 0.28) 50%,
+        rgba(0, 0, 0, 0.34) 100%
+    );
+    box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.1) inset,
+        0 2px 8px rgba(0, 0, 0, 0.28),
+        0 12px 40px rgba(0, 0, 0, 0.32);
+}
+
+.glass-toast-stack--on-video .glass-toast--clickable:hover {
+    border-color: rgba(255, 255, 255, 0.55);
+}
+
+.glass-toast__row {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+
+.glass-toast__body {
+    flex: 1;
+    min-width: 0;
+}
+
+.glass-toast__title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
+    letter-spacing: 0.01em;
+    color: rgba(0, 0, 0, 0.88);
+    line-height: 1.3;
+}
+
+.dark .glass-toast__title {
+    color: rgba(255, 255, 255, 0.95);
+}
+
+.glass-toast-stack--on-video .glass-toast__title {
+    color: #ffffff;
+}
+
+.glass-toast__text {
+    margin-top: 0.2rem;
+    font-size: 0.8rem;
+    line-height: 1.35;
+    color: rgba(0, 0, 0, 0.62);
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
+}
+
+.dark .glass-toast__text {
+    color: rgba(255, 255, 255, 0.72);
+}
+
+.glass-toast-stack--on-video .glass-toast__text {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.glass-toast__dismiss {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.75rem;
+    height: 1.75rem;
+    margin: -0.2rem -0.35rem -0.2rem 0;
+    border: none;
+    border-radius: 9999px;
+    background: transparent;
+    color: rgba(0, 0, 0, 0.45);
+    cursor: pointer;
+    transition: color 0.2s ease, background 0.2s ease;
+}
+
+.glass-toast__dismiss:hover {
+    color: rgba(0, 0, 0, 0.85);
+    background: rgba(0, 0, 0, 0.06);
+}
+
+.dark .glass-toast__dismiss {
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.dark .glass-toast__dismiss:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.glass-toast-stack--on-video .glass-toast__dismiss {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.glass-toast-stack--on-video .glass-toast__dismiss:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.glass-toast--success .glass-toast__title {
+    color: rgba(22, 101, 52, 0.95);
+}
+
+.dark .glass-toast--success .glass-toast__title {
+    color: rgba(134, 239, 172, 0.95);
+}
+
+.glass-toast-stack--on-video .glass-toast--success .glass-toast__title {
+    color: rgba(187, 247, 208, 0.98);
+}
+
+.glass-toast--error .glass-toast__title {
+    color: rgba(153, 27, 27, 0.95);
+}
+
+.dark .glass-toast--error .glass-toast__title {
+    color: rgba(252, 165, 165, 0.95);
+}
+
+.glass-toast-stack--on-video .glass-toast--error .glass-toast__title {
+    color: rgba(254, 202, 202, 0.98);
+}
+
+@keyframes glass-toast-enter {
+    from {
+        opacity: 0;
+        transform: translateY(-0.65rem) scale(0.97);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@media (max-width: 768px) {
+    @keyframes glass-toast-enter {
+        from {
+            opacity: 0;
+            transform: translateY(0.65rem) scale(0.97);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    }
+}

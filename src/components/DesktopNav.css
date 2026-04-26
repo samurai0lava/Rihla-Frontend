@@ -1,0 +1,40 @@
+.desktop-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.3rem;
+  font-family: 'Inter', sans-serif;
+  gap: 2rem;
+}
+
+@media (max-width: 1024px) {
+  .desktop-nav {
+    font-size: 1.1rem;
+    gap: 1.25rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .desktop-nav {
+    display: none;
+  }
+}
+
+.nav-link {
+  color: #000000;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+:is(.dark) .nav-link {
+  color: #ffffff;
+}
+
+.nav-link:hover {
+  color: #FF6600;
+}
+
+.nav-link.active {
+  color: #FF6600;
+}
